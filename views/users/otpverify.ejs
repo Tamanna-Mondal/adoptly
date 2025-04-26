@@ -1,0 +1,14 @@
+<% layout('layouts/boilerplate.ejs') %>
+
+<div class="d-flex justify-content-center align-items-center vh-100">
+  <form action="/signup/verify" method="post" class="p-4 border rounded shadow bg-light" style="width: 350px;">
+    <h2 class="text-center mb-4">Verify OTP</h2>
+
+    <div class="mb-3">
+      <label for="otp" class="form-label">Enter OTP</label>
+      <input type="text" id="otp" name="otp" class="form-control" required>
+    </div>
+
+    <button type="submit" class="btn btn-success w-100">Verify & Register</button>
+  </form>
+</div>

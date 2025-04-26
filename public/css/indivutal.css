@@ -1,0 +1,177 @@
+.container {
+    margin: 0;
+    padding: 0;
+    font-family: "Lora", serif;
+    min-height: 100vh;
+}
+
+/* Page background */
+.individualpage {
+    background-color: #a1d38f;
+    padding: 2rem 1rem;
+}
+
+/* Main card */
+.individual-card {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5rem;
+    background-color: #E1EEBC;
+    padding: 2rem;
+    border-radius: 15px;
+    box-shadow: 0px 2px 10px rgba(0,0,0,0.1);
+}
+
+/* Left part */
+.leftpart {
+    flex: 1 1 40%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Image styling */
+.individual-image img {
+    border-radius: 20px;
+    width: 100%;
+    max-width: 450px;
+    height: auto;
+    object-fit: cover;
+    margin: 0 auto;
+    border: 3px solid #a1d38f;
+}
+.individual-image img:hover{
+    opacity: 0.9;
+}
+/* Left content styling */
+.leftpart-content {
+    margin-top: 2rem;
+    padding: 2.6rem;
+    width: 100%;
+    max-width: 450px;
+  
+    border: 2px solid #28621E;
+    border-radius: 20px;
+    text-align: center;
+    font-size: 19px;
+    transition: background-color 0.3s ease;
+}
+
+.leftpart-content:hover {
+    background-color: #a1d38f;
+}
+
+/* Right part */
+.individual-content {
+    flex: 1 1 50%;
+    font-size: 18px;
+    max-width: 500px;
+}
+
+/* Payment box */
+.individualpage-payment {
+    background-color: #a1d38f;
+    padding: 3rem;
+    border-radius: 10px;
+    width: 100%;
+    max-width: 400px;
+    margin-top: 2rem;
+    transition: all 0.4s ease; 
+}
+
+.individualpage-payment:hover {
+    
+   
+    background-color: #b2d6a4;
+}
+
+/* Payment button */
+.payementBtn {
+    height: 3.7rem;
+    width: 9rem;
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
+    background-color: #E1EEBC;
+    border: none;
+    color: #28621E;
+    border-radius: 10px !important;
+    cursor: pointer;
+    transition: all 0.3s ease; /* Smooth transition for everything */
+}
+
+/* Hover effect */
+.payementBtn:hover {
+
+  background-color: #c6de87;
+    transform: scale(1.05);    /* Button grows slightly */
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.2); /* Soft shadow */
+}
+
+
+/* Adopt button group */
+.individual-adopt-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 1rem;
+    gap: 1rem;
+}
+
+/* Owner info */
+.owner-info {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 1rem;
+    color: rgb(182, 177, 177);
+    margin-bottom: 1rem;
+}
+
+.owner-info img {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+/* ----------- RESPONSIVE DESIGN ------------ */
+
+/* Tablet: Below 992px */
+@media (max-width: 992px) {
+    .individual-card {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .individual-content, .leftpart, .individualpage-payment {
+        max-width: 90%;
+    }
+
+    .individual-image img {
+        max-width: 100%;
+        margin: 0;
+    }
+}
+
+/* Mobile: Below 576px */
+@media (max-width: 576px) {
+    .payementBtn {
+        width: 100%;
+        font-size: 16px;
+    }
+
+    .individual-adopt-btn {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .leftpart-content {
+        padding: 1.5rem;
+    }
+
+    .individualpage-payment {
+        padding: 1.5rem;
+        height: auto;
+    }
+}

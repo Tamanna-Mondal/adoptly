@@ -1,0 +1,178 @@
+<% layout('layouts/boilerplate') %>
+<div style="padding-top: 50px;"></div>
+<div class="container individualpage pt-4 pb-10 c " >
+    <% for (let Alladopt of Alladopts) { %>
+      
+       <div class="individual-card m-4 ">
+
+        <div class="leftpart">
+            <div class="individual-image " >
+                
+                <img src="<%=Alladopt.image%>" alt="<%=Alladopt.catagory%>" >
+                <h5 style="text-align: center; line-height: 1.8;">
+                    <br>Hi there! I'm <%= Alladopt.category %>. 🌟<br>
+                    Your visit means the world to me. 💖<br>
+                    Thank you for your kindness! 🐾
+                </h5>
+                
+            </div>
+            <div class="leftpart-content m-3" >
+
+               
+                <h3>Care & Essential</h3> <hr>
+                
+                <% if (Alladopt.care_suggestions && Alladopt.care_suggestions.trim() !== "") { %>
+                    <p class="small"><strong>Care :</strong> <%= Alladopt.care_suggestions %></p>
+                <% } %>
+            
+                <% if (Alladopt.food_suggestions && Alladopt.food_suggestions.trim() !== "") { %>
+                    <p class="small"><strong>Food :</strong> <%= Alladopt.food_suggestions %></p>
+                <% } %>
+            
+                <% if (Alladopt.medicine && Alladopt.medicine.trim() !== "") { %>
+                    <p class="small"><strong>Medicine:</strong> <%= Alladopt.medicine %></p>
+                <% } else { %>
+                    <p>We don't have any SUggestions for you , <br> 
+                      If you really qurious , Go to the Google and Search for ~<%= Alladopt.breed %>~ . </p>
+                 <% } %>
+            </div>
+        </div>
+       
+
+          
+                <div class="individual-content" style="font-size: 18px; ">
+                    <div class="owner-info">
+                        <img 
+                          src="<%= Alladopt.owner.profileImage ? Alladopt.owner.profileImage : '/account.png' %>" 
+                          alt="account.png"
+                        >
+                        @<%= Alladopt.owner.username %>
+                    </div>
+                    
+
+                      
+                    <p><%= Alladopt.description %></p>
+                    <hr>
+                    <p><b>Breed:</b> <%= Alladopt.breed %></p>
+                    <p><b>Age :</b> <%= Alladopt.age %></p>
+                    <p><b>Gender :</b> <%= Alladopt.gender %></p>
+                    <p><b>Location :</b> <%= Alladopt.place %></p>
+                    <p><b>Price :</b> <%= Alladopt.price %></p>
+                    
+                   <div class="individualpage-payment">
+                    
+
+                    <h3 style="text-align: center;">Payment</h3>
+                        <p>Price : <%= Alladopt.price %></p>
+                        <p class="delivery-info">
+                            Delivery : <del >₹40</del> &nbsp; Free!
+                        </p>
+                        
+                        <hr>
+                        <p><b>Total : </b> <%= Alladopt.price %></p>
+                        <% if (currUser && String(currUser._id) === String(Alladopt.owner._id)) { %>
+                            <div class="btn-group" style="gap: 12px;">
+                                <a href="/adoptly/<%= Alladopt.category %>/<%= Alladopt._id %>/edit" class="btn btn-warning" style="height: 50px; border-radius: 5px; padding: 12px;">Update</a>
+                                <form action="/adoptly/<%= Alladopt.category %>/<%=Alladopt._id %>?_method=DELETE" method="POST" class="d-inline" style="margin:0px; padding:0px;">
+                                    <button  class="btn btn-danger"  >Delete</button>
+                                </form>
+                            </div>
+                        <% } else { %>
+                            <div class="btn-group individual-adopt-btn">                                            
+                               <% if (currUser) { %> 
+                                <a href="/adoptly/<%= Alladopt.category %>/<%= Alladopt._id %>"></a>   
+                                <button class="btn btn-warning payementBtn " id="adopt"
+                                            data-price="<%= Alladopt.price %>" 
+                                            data-id="<%= Alladopt._id %>">
+                                        Adopt
+                                    </button>
+                                <% } else { %>
+                                    <a href="/login" class="btn btn-warning payementBtn" >Adopt</a>
+                                <% } %> 
+                            </div>
+                        <% } %>  
+                   </div>
+                        
+                </div>
+                
+                </div>
+                
+                <div class="individual-content pt-3">
+                    <div class="individual-right">
+                        
+                        <div class="individual-right-content">
+                           
+                            
+                        </div>
+                       
+            </div>
+        </a>
+    </div>
+<% } %>
+</div>
+</div>
+
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+document.querySelectorAll('#adopt').forEach(button => {
+    button.addEventListener('click', async function () {
+        const price = this.getAttribute('data-price');  // Get pet price
+        const petId = this.getAttribute('data-id');  // Get pet ID
+        
+        const response = await fetch('/create-order', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ amount: price, petId: petId })  // Send price to backend
+        });
+
+        const order = await response.json();
+        
+        if (!order.id) {
+            alert("Failed to create order");
+            return;
+        }
+
+                    const options = {
+                key: "rzp_test_uX0VeA2wZF0s8J",
+                amount: order.amount * 100,
+                currency: "INR",
+                name: "Adoptly",
+                description: "Adopt a pet",
+                order_id: order.id,
+                method: {
+                    netbanking: true,
+                    card: true,
+                    upi: true,  // Ensure UPI is enabled
+                    wallet: true
+                },
+                handler: async function (response) {
+                    const verifyResponse = await fetch('/verify-payment', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            razorpay_payment_id: response.razorpay_payment_id,
+                            razorpay_order_id: response.razorpay_order_id,
+                            razorpay_signature: response.razorpay_signature,
+                            petId: petId
+                        })
+                    });
+
+                    const verifyData = await verifyResponse.json();
+                    if (verifyData.success) {
+                        window.location.href = verifyData.redirectUrl;  
+                    } else {
+                        alert("Payment Failed!");
+                    }
+                }
+            };
+
+
+        const rzp = new Razorpay(options);
+        rzp.open();
+    });
+});
+});
+</script>
+</body>
+

@@ -1,0 +1,67 @@
+<% layout('layouts/boilerplate.ejs') %>
+<body class="container mt-5">
+
+    <h2 class="text-primary mb-4">Update Listing</h2>
+
+    <form method="post" action="/adoptly/<%= Alladopts.category %>/<%= Alladopts._id %>?_method=PUT" class="border p-4 rounded shadow-sm bg-light">
+        
+        <div class="mb-3">
+            <label class="form-label">Category</label>
+            <input name="Alladopts[category]" value="<%= Alladopts.category %>" class="form-control" type="text" required>
+        </div>
+         
+        <div class="mb-3">
+            <label class="form-label">Breed</label>
+            <input name="Alladopts[breed]" value="<%= Alladopts.breed %>" class="form-control" type="text" required>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Age</label>
+            <input name="Alladopts[age]" value="<%= Alladopts.age %>" class="form-control" type="text" required>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Gender</label>
+            <input name="Alladopts[gender]" value="<%= Alladopts.gender %>" class="form-control" type="text" required>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Place</label>
+            <input name="Alladopts[place]" value="<%= Alladopts.place %>" class="form-control" type="text" required>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Description</label>
+            <textarea name="Alladopts[description]" class="form-control" rows="3" required><%= Alladopts.description %></textarea>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Food Suggestions</label>
+            <textarea name="Alladopts[food_suggestions]" class="form-control" rows="2"><%= Alladopts.food_suggestions %></textarea>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Medicine</label>
+            <input name="Alladopts[medicine]" value="<%= Alladopts.medicine %>" class="form-control" type="text">
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Care Suggestions</label>
+            <textarea name="Alladopts[care_suggestions]" class="form-control" rows="2"><%= Alladopts.care_suggestions %></textarea>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Image URL</label>
+            <input name="Alladopts[image]" value="<%= Alladopts.image %>" class="form-control" type="text" required>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Price</label>
+            <input name="Alladopts[price]" value="<%= Alladopts.price %>" class="form-control" type="number" min="0" required>
+        </div>
+
+        <button type="submit" class="btn btn-warning w-100">Update Now</button>
+
+    </form>
+
+</body>

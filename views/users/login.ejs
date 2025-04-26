@@ -1,0 +1,23 @@
+<% layout('layouts/boilerplate.ejs') %>
+<h2>login</h2>
+<div class="d-flex justify-content-center align-items-center vh-100">
+  <form action="/login" method="post" class="p-4 border rounded shadow bg-light" style="width: 350px;">
+    <h2 class="text-center mb-4">Sign Up</h2>
+
+    <div class="mb-3">
+      <label for="username" class="form-label">Username</label>
+      <input type="text" id="username" name="username" class="form-control" placeholder="Enter your username" required>
+    </div>
+
+    <div class="mb-3">
+      <label for="password" class="form-label">Password</label>
+      <input type="password" id="password" name="password" class="form-control" placeholder="Enter your password" required>
+    </div>
+
+    <button type="submit" class="btn btn-primary w-100">Log-In</button>
+    
+    <div class="text-center mt-2">
+      <a href="/forgot-password" class="text-decoration-none">Forgot Password?</a>
+    </div>
+  </form>
+</div>
