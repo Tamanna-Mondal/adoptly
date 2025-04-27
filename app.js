@@ -79,7 +79,7 @@ app.get('/adoptly', wrapAsync(async (req, res) => {
 }));
 
 app.get('/', (req, res) => {
-    res.send('/adoptly');
+    res.render('/adoptly');
 });
 
 
