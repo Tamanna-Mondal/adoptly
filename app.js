@@ -532,7 +532,7 @@ app.use((err, req, res, next) => {
 });
 
 app.get('/', (req, res) => {
-    res.redirect('/adoptly');
+    res.send('hello');
 });
 // Start Server
 app.listen(process.env.PORT || 8080, () => {
