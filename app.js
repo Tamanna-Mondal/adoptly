@@ -64,8 +64,22 @@ app.use((req, res, next) => {
 
 // Routes
 
+
+app.get('/adoptly', wrapAsync(async (req, res) => {
+    let allAdopts = await Adopt.find({});
+    
+    // Group by category and limit to 3 per category
+    let limitedAdopts = _.chain(allAdopts)
+        .groupBy('category')
+        .map(adopts => adopts.slice(0, 3)) // Keep only 3 per category
+        .flatten() // Convert grouped data back into a flat array
+        .value();
+
+    res.render('./page/landing', { limitedAdopts });
+}));
+
 app.get('/', (req, res) => {
-    res.send('hello');
+    res.send('/adoptly');
 });
 
 
@@ -128,18 +142,7 @@ app.delete("/adoptly/:category/:id",isLogIn, wrapAsync(async (req, res) => {
 
 const _ = require('lodash');
 
-app.get('/adoptly', wrapAsync(async (req, res) => {
-    let allAdopts = await Adopt.find({});
-    
-    // Group by category and limit to 3 per category
-    let limitedAdopts = _.chain(allAdopts)
-        .groupBy('category')
-        .map(adopts => adopts.slice(0, 3)) // Keep only 3 per category
-        .flatten() // Convert grouped data back into a flat array
-        .value();
 
-    res.render('./page/landing', { limitedAdopts });
-}));
 
 
 
