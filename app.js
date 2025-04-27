@@ -64,7 +64,9 @@ app.use((req, res, next) => {
 
 // Routes
 
-
+app.get('/', (req, res) => {
+    res.send('hello');
+});
 
 
 //user account:
@@ -518,9 +520,7 @@ app.post('/verify-otp2', async (req, res) => {
     }
 });
 
-app.get('/', (req, res) => {
-    res.send('hello');
-});
+
 
 
 // Error Handling
