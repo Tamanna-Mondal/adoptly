@@ -78,9 +78,15 @@ app.get('/adoptly', wrapAsync(async (req, res) => {
     res.render('./page/landing', { limitedAdopts });
 }));
 
-app.get('/', (req, res) => {
-    res.render('/adoptly');
-});
+app.get('/', wrapAsync(async (req, res) => {
+    let allAdopts = await Adopt.find({});
+    let limitedAdopts = _.chain(allAdopts)
+        .groupBy('category')
+        .map(adopts => adopts.slice(0, 3))
+        .flatten()
+        .value();
+    res.render('page/landing', { limitedAdopts });
+}));
 
 
 //user account:
