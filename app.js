@@ -64,6 +64,11 @@ app.use((req, res, next) => {
 
 // Routes
 
+app.get('/', (req, res) => {
+    res.redirect('/adoptly');
+});
+
+
 //user account:
 app.get('/adoptly/user/:id', async(req,res) =>{
     let user= await User.findById(req.params.id);
@@ -527,6 +532,7 @@ app.use((err, req, res, next) => {
 });
 
 // Start Server
-app.listen(8080, () => {
-    console.log(`Server started on port 8080`);
+app.listen(process.env.PORT || 8080, () => {
+    console.log(`Server started`);
 });
+
