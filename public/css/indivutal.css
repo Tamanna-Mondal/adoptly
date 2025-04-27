@@ -16,7 +16,7 @@
     display: flex;
     flex-wrap: wrap;
     gap: 5rem;
-    background-color: #E1EEBC;
+    background-color: #e8ddc6;
     padding: 2rem;
     border-radius: 15px;
     box-shadow: 0px 2px 10px rgba(0,0,0,0.1);
@@ -58,7 +58,7 @@
 }
 
 .leftpart-content:hover {
-    background-color: #a1d38f;
+    background-color: #A5B68D;
 }
 
 /* Right part */
@@ -70,7 +70,7 @@
 
 /* Payment box */
 .individualpage-payment {
-    background-color: #a1d38f;
+    background-color: #A5B68D;
     padding: 3rem;
     border-radius: 10px;
     width: 100%;
@@ -92,21 +92,22 @@
     text-align: center;
     font-size: 18px;
     font-weight: bold;
-    background-color: #E1EEBC;
+    background-color: #4a6a3f; /* Dark green */
     border: none;
-    color: #28621E;
+    color: #ffffff; /* White text looks cleaner */
     border-radius: 10px !important;
     cursor: pointer;
-    transition: all 0.3s ease; /* Smooth transition for everything */
+    transition: all 0.3s ease;
 }
 
 /* Hover effect */
 .payementBtn:hover {
-
-  background-color: #c6de87;
-    transform: scale(1.05);    /* Button grows slightly */
-    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.2); /* Soft shadow */
+    background-color: #6fbf73; /* Fresh medium green */
+    transform: scale(1.05);
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.2);
+    color: #ffffff; /* Keep text white on hover */
 }
+
 
 
 /* Adopt button group */
@@ -174,4 +175,58 @@
         padding: 1.5rem;
         height: auto;
     }
+}
+
+
+/* Smooth card lift on hover */
+.individual-card {
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.individual-card:hover {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 15px 30px rgba(40, 98, 30, 0.2);
+}
+
+/* Slight shadow & scale on image hover */
+.individual-image img {
+    transition: transform 0.3s ease, box-shadow 0.3s ease, opacity 0.3s ease;
+}
+
+.individual-image img:hover {
+    opacity: 0.95;
+    transform: scale(1.03);
+    box-shadow: 0 8px 20px rgba(40, 98, 30, 0.3);
+}
+
+/* Left content background smooth transition */
+.leftpart-content {
+    transition: background-color 0.4s ease, box-shadow 0.3s ease;
+}
+
+.leftpart-content:hover {
+    background-color: #A5B68D;
+    box-shadow: 0 8px 20px rgba(40, 98, 30, 0.3);
+}
+
+/* Payment box smoother hover */
+.individualpage-payment {
+    transition: background-color 0.4s ease, box-shadow 0.3s ease;
+}
+
+.individualpage-payment:hover {
+    background-color: #b2d6a4;
+    box-shadow: 0 10px 25px rgba(40, 98, 30, 0.25);
+}
+
+/* Payment button already great, just add subtle shadow */
+.payementBtn {
+    transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.payementBtn:hover {
+    background-color: #6fbf73;
+    transform: scale(1.05);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+    color: #ffffff;
 }

@@ -2,13 +2,13 @@
 
 <div style="padding-top: 50px;"></div>
 
-<body style="background-color: #ACD3A8;">
+<body style="background-color: #C1CFA1;">
     <div class="container landingpage p-5">
-        <div class="row justify-content-center" >
+        <div class="row justify-content-center">
             <% for (let Alladopt of Alladopts) { %>
-                <div class="col-md-6 col-lg-4 mt-4  d-flex align-items-stretch" >
+                <div class="col-12 col-sm-12 col-md-6 col-lg-3 mt-4 d-flex align-items-stretch">
                     <a href="/adoptly/<%= Alladopt.category %>/<%= Alladopt.id %>" class="text-decoration-none w-100">
-                        <div class="card h-100 shadow-sm" style="border-radius: 10px; ">
+                        <div class="card h-100 shadow-sm" style="border-radius: 10px;">
                             
                             <img src="<%= Alladopt.image %>" 
                                 alt="<%= Alladopt.breed %>" 
@@ -17,7 +17,7 @@
 
                             <div class="card-body" style="line-height: 1.4;">
                                 <h5 class="card-title text-center mb-3">
-                                    <b>We can give me name ,  by Adopt me!</b>
+                                    <b>We can give me a name, by adopting me!</b>
                                 </h5>
                                 <p class="card-text"><b>Breed:</b> <%= Alladopt.breed %></p>
                                 <p class="card-text"><b>Gender:</b> <%= Alladopt.gender %></p>
@@ -25,14 +25,12 @@
                                 <p class="card-text"><b>Price:</b> ₹<%= Alladopt.price.toLocaleString('en-IN') %></p>
                                 <p class="card-text"><b>Location:</b> <%= Alladopt.place %></p>
 
-                                
-                            <div class="card-footer bg-transparent border-top-0 p-3 d-flex justify-content-center">
-                                <button class="btn payementBtn" style="background-color: #28621E; letter-spacing: 1.5px; color: #ffffff; width: 60%;">
-                                    Adopt
-                                </button>
+                                <div class="card-footer bg-transparent border-top-0 p-3 d-flex justify-content-center">
+                                    <button class="btn payementBtn" style="letter-spacing: 1.5px; color: #ffffff; width: 60%;">
+                                        Adopt
+                                    </button>
+                                </div>
                             </div>
-                            </div>
-
 
                         </div>
                     </a>

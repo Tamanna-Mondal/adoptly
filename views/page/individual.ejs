@@ -1,7 +1,7 @@
 <% layout('layouts/boilerplate') %>
 
 <div style="padding-top: 55px;"></div>
-<div class="container individualpage pt-4 pb-10 c " style="background-color:  #a1d38f">
+<div class="container individualpage pt-4 pb-10 c " style="background-color:  #C1CFA1">
     <% for (let Alladopt of Alladopts) { %>
       
        <div class="individual-card m-4 ">
@@ -72,10 +72,10 @@
                         <hr>
                         <p><b>Total : </b> <%= Alladopt.price %></p>
                         <% if (currUser && String(currUser._id) === String(Alladopt.owner._id)) { %>
-                            <div class="btn-group" style="gap: 12px;">
-                                <a href="/adoptly/<%= Alladopt.category %>/<%= Alladopt._id %>/edit" class="btn btn-warning" style="height: 50px; border-radius: 5px; padding: 12px;">Update</a>
-                                <form action="/adoptly/<%= Alladopt.category %>/<%=Alladopt._id %>?_method=DELETE" method="POST" class="d-inline" style="margin:0px; padding:0px;">
-                                    <button  class="btn btn-danger"  >Delete</button>
+                            <div class="btn-group individual-adopt-btn">
+                                <a href="/adoptly/<%= Alladopt.category %>/<%= Alladopt._id %>/edit" class="btn btn-warning payementBtn">Update</a>
+                                <form action="/adoptly/<%= Alladopt.category %>/<%=Alladopt._id %>?_method=DELETE" method="POST" >
+                                    <button  class="btn btn-danger payementBtn" style=" background-color: rgb(204, 10, 10); color: aliceblue; margin: 10px;">Delete</button>
                                 </form>
                             </div>
                         <% } else { %>

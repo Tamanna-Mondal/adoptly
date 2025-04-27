@@ -10,19 +10,19 @@ body{
 }
 
 .navbar {
-  position: absolute; 
+  position: fixed; 
   top: 0;
   left: 0;
   width: 100%;
   height: 55px;
   z-index: 1000; 
-  background-color: #67AE6E; 
+  background-color: #59784d; 
 }
 
 
 .navbar-brand{
   font-size: 15px;
-  color: #104f05 !important;
+  color: #faf9f6 !important;
   font-weight: bolder;
   /* margin-left: 10px; */
   margin-right: 5rem;
@@ -30,9 +30,9 @@ body{
 
 .navbar ,
 .navbar .nav-link {
-  font-size: 16px;
-    color: #104f05 !important;
-    font-weight: bolder;
+  font-size: 17px;
+    color: #faf9f6 !important;
+    font-weight: lighter;
 }
 
 .container {
@@ -42,7 +42,7 @@ body{
 }
 /* #ACD3A8 , #cdecc1 */
 .landingpage .card{
-  background-color: #cdecc1; 
+  background-color: #e8ddc6; 
   border: none;
   color: #28621E !important;
   line-height: 50%;
@@ -75,12 +75,13 @@ body{
 
 
 /* Buttons */
+
 .logout-btn{
-  /* width: 100%; */
-  padding: 12px;
-  /* margin-top: 15px; */
-  background-color: #E1EEBC;
-  color: #28621E;
+ 
+ width: 7.4rem;
+ height: 2.8rem !important;
+  background-color: #EDE8DC;
+  color: #2E2E2E;
   font-size: 16px;
   font-weight: bold;
   border: none !important;
@@ -96,6 +97,7 @@ body{
 .logout-btn:hover {
   background-color: #c6de87;
 }
+
 
 /* banner */
 
@@ -262,7 +264,7 @@ video {
 
 
 /* Password Change Form */
-form {
+.form {
   width: 100%;
   max-width: 400px;
   margin: 20px auto;
@@ -295,7 +297,7 @@ form input {
 }
 
 form input:focus {
-  border-color: #FCCD2A;
+  border-color: #A5B68D;
   outline: none;
 }
 
@@ -335,5 +337,5 @@ form input:focus {
 }
 
 #closeForm:hover {
-  color: #d9534f;
+  color: #A5B68D;
 }
