@@ -518,7 +518,9 @@ app.post('/verify-otp2', async (req, res) => {
     }
 });
 
-
+app.get('/', (req, res) => {
+    res.send('hello');
+});
 
 
 // Error Handling
@@ -531,9 +533,7 @@ app.use((err, req, res, next) => {
     res.status(statusCode).render('error.ejs', { statusCode, message });
 });
 
-app.get('/', (req, res) => {
-    res.send('hello');
-});
+
 // Start Server
 app.listen(process.env.PORT || 8080, () => {
     console.log(`Server started`);
