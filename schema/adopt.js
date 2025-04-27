@@ -25,7 +25,7 @@ const adoptSchema = new Schema({
     price: Number,
     image: {
         type: String,
-        set: (v) => v || "https://i.pinimg.com/736x/b4/55/1f/b4551f8d549b7e6f7f63d789fa06fb3b.jpg"
+        set: (v) => v || "https://i.pinimg.com/736x/9a/b0/75/9ab075d8b2f6cd9ccb084cf43ff88fd5.jpg"
     },
     description: {
         type: String,

@@ -64,9 +64,7 @@ app.use((req, res, next) => {
 
 // Routes
 
-app.get('/', (req, res) => {
-    res.redirect('/adoptly');
-});
+
 
 
 //user account:
@@ -81,10 +79,18 @@ app.get('/adoptly/user/:id', async(req,res) =>{
    
 });
 
-
+// add New Donet pate
 app.get("/adoptly/new", isLogIn, (req, res) => {
     res.render("./page/new.ejs");
 });
+
+app.post("/adoptly", isLogIn, wrapAsync(async (req, res) => {
+    const newAdopt = new Adopt(req.body);
+    newAdopt.owner = req.user._id;
+    await newAdopt.save();
+    req.flash("success", "Added new pet for adoption!");
+    res.redirect(`/adoptly/user/${req.user._id}`);
+}));
 
 app.get('/adoptly/:category', wrapAsync(async (req, res) => {
     let { category } = req.params;
@@ -113,16 +119,10 @@ app.put("/adoptly/:category/:id",isLogIn, wrapAsync(async (req, res) => {
 app.delete("/adoptly/:category/:id",isLogIn, wrapAsync(async (req, res) => {
     await Adopt.findByIdAndDelete(req.params.id);
     req.flash("success", "Adopt details is  Deleted Successfully!");
-    res.redirect("/adoptly");
+    res.redirect(`/adoptly/user/${req.user._id}`);
 }));
 
-app.post("/adoptly", isLogIn, wrapAsync(async (req, res) => {
-    const newAdopt = new Adopt(req.body);
-    newAdopt.owner = req.user._id;
-    await newAdopt.save();
-    req.flash("success", "Added new pet for adoption!");
-    res.redirect("/adoptly");
-}));
+
 
 const _ = require('lodash');
 
@@ -531,6 +531,9 @@ app.use((err, req, res, next) => {
     res.status(statusCode).render('error.ejs', { statusCode, message });
 });
 
+app.get('/', (req, res) => {
+    res.redirect('/adoptly');
+});
 // Start Server
 app.listen(process.env.PORT || 8080, () => {
     console.log(`Server started`);
