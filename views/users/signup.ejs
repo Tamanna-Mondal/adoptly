@@ -30,18 +30,89 @@
     <label for="address" class="form-label">Address</label>
     <input type="text" id="address" name="address" class="form-control" required>
   </div>
+  
 
   
   <div class="row mb-3">
-    <div class="col-md-6">
-      <label for="state" class="form-label">State</label>
-      <input type="text" id="state" name="state" class="form-control" required>
+    <div class="mb-3">
+      <label for="country" class="form-label">Country</label>
+      <select id="country" name="country" class="form-control" required>
+        <option value="">Select Country</option>
+      </select>
     </div>
-    <div class="col-md-6">
+  
+    <div class="mb-3">
+      <label for="state" class="form-label">State</label>
+      <select id="state" name="state" class="form-control" required>
+        <option value="">Select State</option>
+      </select>
+    </div>
+  
+    <div class="mb-3">
       <label for="city" class="form-label">City</label>
-      <input type="text" id="city" name="city" class="form-control" required>
+      <select id="city" name="city" class="form-control" required>
+        <option value="">Select City</option>
+      </select>
     </div>
   </div>
-
-  <button type="submit" class="btn btn-primary w-100">Send OTP</button>
+  
+    <button type="submit" class="btn btn-primary w-100">Send OTP</button>
 </form>
+
+
+<script>
+  const countrySelect = document.getElementById("country");
+  const stateSelect = document.getElementById("state");
+  const citySelect = document.getElementById("city");
+
+  // Load all countries
+  async function loadCountries() {
+    const res = await fetch("https://countriesnow.space/api/v0.1/countries/positions");
+    const data = await res.json();
+    data.data.forEach(country => {
+      const option = new Option(country.name, country.name);
+      countrySelect.add(option);
+    });
+  }
+
+  // Load states when country changes
+  countrySelect.addEventListener("change", async () => {
+    stateSelect.innerHTML = "<option value=''>Select State</option>";
+    citySelect.innerHTML = "<option value=''>Select City</option>";
+    const country = countrySelect.value;
+
+    const res = await fetch("https://countriesnow.space/api/v0.1/countries/states", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ country })
+    });
+
+    const data = await res.json();
+    data.data.states.forEach(state => {
+      const option = new Option(state.name, state.name);
+      stateSelect.add(option);
+    });
+  });
+
+  // Load cities when state changes
+  stateSelect.addEventListener("change", async () => {
+    citySelect.innerHTML = "<option value=''>Select City</option>";
+    const country = countrySelect.value;
+    const state = stateSelect.value;
+
+    const res = await fetch("https://countriesnow.space/api/v0.1/countries/state/cities", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ country, state })
+    });
+
+    const data = await res.json();
+    data.data.forEach(city => {
+      const option = new Option(city, city);
+      citySelect.add(option);
+    });
+  });
+
+  // Start by loading countries
+  loadCountries();
+</script>
