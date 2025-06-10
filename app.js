@@ -36,7 +36,7 @@ app.use(methodOverride('_method'));
 
 // Session Configuration
 app.use(session({
-    secret: process.env.SECRET,
+    secret: '@Adoptly!SecretKey_12345678',
     resave: false,
     saveUninitialized: false,
     cookie: { 
